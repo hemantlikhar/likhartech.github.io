@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hemant Likhar – Senior iOS Developer & Mobile Tech Lead</title>
+<meta name="description" content="Senior iOS Developer & Mobile Tech Lead with 15+ years of enterprise mobile application experience. Expert in Swift, SwiftUI, UIKit, and Mobile Architecture.">
+<meta name="keywords" content="iOS Developer, Swift, SwiftUI, UIKit, Mobile Tech Lead, React Native, Objective-C">
+<meta property="og:title" content="Hemant Likhar – Senior iOS Developer">
+<meta property="og:description" content="15+ years building enterprise-grade iOS applications for logistics, fleet management, and business platforms.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #05080f;
+  --bg2: #0a0f1e;
+  --bg3: #0f1629;
+  --surface: rgba(255,255,255,0.04);
+  --surface-hover: rgba(255,255,255,0.07);
+  --border: rgba(255,255,255,0.08);
+  --border-active: rgba(96,165,250,0.4);
+  --text: #f0f4ff;
+  --text2: #8b9cc4;
+  --text3: #4a5878;
+  --blue: #3b82f6;
+  --blue2: #60a5fa;
+  --cyan: #22d3ee;
+  --purple: #a855f7;
+  --gradient: linear-gradient(135deg, #3b82f6, #a855f7);
+  --gradient2: linear-gradient(135deg, #22d3ee, #3b82f6);
+  --font: 'DM Sans', sans-serif;
+  --serif: 'DM Serif Display', serif;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 0 40px rgba(59,130,246,0.08);
+  --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.light-mode {
+  --bg: #f8faff;
+  --bg2: #eef2fb;
+  --bg3: #e4eaf8;
+  --surface: rgba(0,0,20,0.04);
+  --surface-hover: rgba(0,0,20,0.07);
+  --border: rgba(0,0,80,0.1);
+  --border-active: rgba(59,130,246,0.4);
+  --text: #0f172a;
+  --text2: #4b6280;
+  --text3: #94a3b8;
+  --shadow: 0 0 40px rgba(59,130,246,0.06);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;transition:background var(--transition),color var(--transition);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--blue);border-radius:2px}
+
+/* SCROLL PROGRESS */
+#scroll-progress{position:fixed;top:0;left:0;height:2px;background:var(--gradient);z-index:9999;transition:width 0.1s linear;width:0%}
+
+/* LOADING */
+#loader{position:fixed;inset:0;background:var(--bg);z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;transition:opacity 0.5s,transform 0.5s}
+#loader.hidden{opacity:0;pointer-events:none;transform:translateY(-10px)}
+.loader-logo{font-family:var(--serif);font-size:2.5rem;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.loader-bar{width:120px;height:2px;background:var(--surface);border-radius:1px;overflow:hidden}
+.loader-fill{height:100%;background:var(--gradient);border-radius:1px;animation:loaderAnim 1.4s ease forwards}
+@keyframes loaderAnim{from{width:0}to{width:100%}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(5,8,15,0.7);border-bottom:1px solid var(--border);transition:all var(--transition)}
+.light-mode nav{background:rgba(248,250,255,0.8)}
+.nav-logo{font-family:var(--serif);font-size:1.25rem;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:400}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{font-size:0.85rem;color:var(--text2);letter-spacing:0.03em;transition:color var(--transition);font-weight:400}
+.nav-links a:hover{color:var(--text)}
+.nav-right{display:flex;gap:12px;align-items:center}
+.theme-btn{background:var(--surface);border:1px solid var(--border);color:var(--text2);cursor:pointer;padding:6px 10px;border-radius:8px;font-size:1rem;transition:all var(--transition);line-height:1}
+.theme-btn:hover{color:var(--text);border-color:var(--border-active)}
+.nav-cta{background:var(--gradient);color:#fff;border:none;padding:8px 18px;border-radius:8px;font-size:0.82rem;font-family:var(--font);cursor:pointer;font-weight:500;transition:opacity var(--transition)}
+.nav-cta:hover{opacity:0.85}
+.hamburger{display:none;background:none;border:1px solid var(--border);color:var(--text);padding:6px 10px;border-radius:8px;cursor:pointer;font-size:1.1rem}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--border);padding:1.5rem 2rem;flex-direction:column;gap:1.25rem;z-index:999;backdrop-filter:blur(20px)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--text2);font-size:0.95rem;transition:color var(--transition)}
+.mobile-menu a:hover{color:var(--text)}
+
+/* SECTIONS */
+section{padding:100px 0;position:relative}
+.container{max-width:1100px;margin:0 auto;padding:0 2rem}
+
+/* ANIMATIONS */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding-top:80px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-glow{position:absolute;border-radius:50%;filter:blur(120px);opacity:0.12}
+.glow-1{width:600px;height:600px;background:#3b82f6;top:-100px;left:-100px;animation:float1 8s ease-in-out infinite}
+.glow-2{width:500px;height:500px;background:#a855f7;bottom:-100px;right:-50px;animation:float2 10s ease-in-out infinite}
+.glow-3{width:300px;height:300px;background:#22d3ee;top:50%;left:50%;transform:translate(-50%,-50%);animation:float3 12s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,20px)}}
+@keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(-20px,30px)}}
+@keyframes float3{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-45%,-55%)}}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black,transparent)}
+.light-mode .grid-bg{background-image:linear-gradient(rgba(0,0,80,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,80,0.04) 1px,transparent 1px)}
+.hero-content{position:relative;z-index:1;text-align:center;max-width:800px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:6px 16px;border-radius:100px;font-size:0.78rem;color:var(--text2);margin-bottom:2rem;letter-spacing:0.04em}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(1.3)}}
+.hero-name{font-family:var(--serif);font-size:clamp(2.8rem,7vw,5.5rem);line-height:1.05;margin-bottom:0.5rem;letter-spacing:-0.02em}
+.hero-name span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-title{font-size:clamp(1.1rem,3vw,1.5rem);color:var(--text2);margin-bottom:1.5rem;font-weight:300;letter-spacing:0.01em}
+.hero-desc{font-size:0.95rem;color:var(--text3);max-width:580px;margin:0 auto 1rem;line-height:1.75}
+.hero-desc2{font-size:0.88rem;color:var(--text3);max-width:540px;margin:0 auto 2.5rem;line-height:1.7}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem}
+.btn-primary{background:var(--gradient);color:#fff;border:none;padding:13px 28px;border-radius:10px;font-size:0.9rem;font-family:var(--font);cursor:pointer;font-weight:500;transition:opacity var(--transition),transform var(--transition)}
+.btn-primary:hover{opacity:0.85;transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);padding:13px 28px;border-radius:10px;font-size:0.9rem;font-family:var(--font);cursor:pointer;font-weight:400;transition:all var(--transition);display:inline-flex;align-items:center;gap:8px}
+.btn-outline:hover{border-color:var(--border-active);background:var(--surface);transform:translateY(-2px)}
+.hero-social{display:flex;gap:16px;justify-content:center}
+.social-link{width:40px;height:40px;border-radius:10px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text2);transition:all var(--transition);font-size:1rem}
+.social-link:hover{border-color:var(--border-active);color:var(--blue2);background:var(--surface-hover);transform:translateY(-3px)}
+.hero-phones{display:flex;justify-content:center;gap:30px;margin-top:4rem;position:relative}
+.phone-mockup{width:160px;height:280px;border-radius:28px;background:var(--bg3);border:1.5px solid var(--border);position:relative;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.4)}
+.phone-mockup.center{width:180px;height:320px;border-radius:32px;z-index:2;transform:translateY(-20px);box-shadow:0 40px 100px rgba(59,130,246,0.15)}
+.phone-screen{position:absolute;inset:6px;border-radius:22px;overflow:hidden}
+.phone-app{width:100%;height:100%;display:flex;flex-direction:column}
+.app-bar{height:40px;display:flex;align-items:center;padding:0 12px;font-size:0.65rem;font-weight:500;letter-spacing:0.05em}
+.app-bar-blue{background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff}
+.app-bar-purple{background:linear-gradient(135deg,#6b21a8,#a855f7);color:#fff}
+.app-bar-cyan{background:linear-gradient(135deg,#0e7490,#22d3ee);color:#fff}
+.app-content{flex:1;padding:10px;display:flex;flex-direction:column;gap:6px;background:var(--bg2)}
+.app-card-mini{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px;font-size:0.6rem;color:var(--text2)}
+.app-card-mini strong{display:block;color:var(--text);font-size:0.65rem;margin-bottom:2px}
+.app-map{height:60px;background:linear-gradient(135deg,#0f1629,#1e3a5f);border-radius:6px;position:relative;overflow:hidden;margin-top:4px}
+.map-dot{position:absolute;width:8px;height:8px;border-radius:50%;background:#22d3ee;animation:mapPulse 2s ease-in-out infinite}
+.map-dot::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1.5px solid rgba(34,211,238,0.4);animation:mapPulse2 2s ease-in-out infinite}
+@keyframes mapPulse{0%,100%{opacity:1}50%{opacity:0.5}}
+@keyframes mapPulse2{0%{transform:scale(1);opacity:0.8}100%{transform:scale(2);opacity:0}}
+.floating-card{position:absolute;background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:10px 14px;font-size:0.72rem;backdrop-filter:blur(20px);box-shadow:0 10px 30px rgba(0,0,0,0.2)}
+.floating-card.fc1{left:-20px;top:30px;animation:floatCard1 5s ease-in-out infinite}
+.floating-card.fc2{right:-20px;top:60px;animation:floatCard2 6s ease-in-out infinite}
+.floating-card.fc3{left:30px;bottom:20px;animation:floatCard1 7s ease-in-out infinite reverse}
+@keyframes floatCard1{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes floatCard2{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+.fc-label{font-size:0.65rem;color:var(--text3);margin-bottom:2px}
+.fc-value{font-weight:600;font-size:0.85rem;background:var(--gradient2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* SECTION HEADER */
+.section-tag{font-size:0.75rem;letter-spacing:0.12em;color:var(--blue2);margin-bottom:0.75rem;text-transform:uppercase;font-weight:500}
+.section-title{font-family:var(--serif);font-size:clamp(2rem,4vw,2.8rem);margin-bottom:1rem;line-height:1.15;letter-spacing:-0.02em}
+.section-title span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.section-sub{color:var(--text2);font-size:0.95rem;max-width:560px;line-height:1.7}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:4rem}
+.about-avatar{width:100%;max-width:300px;aspect-ratio:1;border-radius:24px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;margin:0 auto}
+.avatar-inner{width:120px;height:120px;border-radius:50%;background:var(--gradient);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:3rem;color:#fff;font-weight:400}
+.avatar-ring{position:absolute;inset:-2px;border-radius:26px;border:2px solid transparent;background:var(--gradient) border-box;-webkit-mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);-webkit-mask-composite:destination-out;mask-composite:exclude}
+.about-text p{color:var(--text2);font-size:0.93rem;line-height:1.75;margin-bottom:1rem}
+.about-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:2rem}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.25rem;transition:all var(--transition);text-align:center}
+.stat-card:hover{border-color:var(--border-active);background:var(--surface-hover);transform:translateY(-3px)}
+.stat-number{font-family:var(--serif);font-size:2rem;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:4px}
+.stat-label{font-size:0.78rem;color:var(--text3);letter-spacing:0.03em}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:3rem}
+.skill-category{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;transition:all var(--transition);position:relative;overflow:hidden}
+.skill-category::before{content:'';position:absolute;inset:0;background:var(--gradient);opacity:0;transition:opacity var(--transition)}
+.skill-category:hover{border-color:var(--border-active);transform:translateY(-4px);box-shadow:var(--shadow)}
+.skill-category:hover::before{opacity:0.03}
+.skill-cat-icon{font-size:1.5rem;margin-bottom:0.75rem}
+.skill-cat-title{font-size:0.9rem;font-weight:600;margin-bottom:1rem;color:var(--text);letter-spacing:0.02em}
+.skill-tags{display:flex;flex-wrap:wrap;gap:7px}
+.skill-tag{background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);color:var(--blue2);padding:4px 10px;border-radius:6px;font-size:0.75rem;font-weight:400;transition:all var(--transition)}
+.skill-tag:hover{background:rgba(59,130,246,0.2);transform:scale(1.05)}
+.skill-tag.purple{background:rgba(168,85,247,0.1);border-color:rgba(168,85,247,0.2);color:#c084fc}
+.skill-tag.cyan{background:rgba(34,211,238,0.1);border-color:rgba(34,211,238,0.2);color:#67e8f9}
+.skill-tag.green{background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.2);color:#86efac}
+.skill-tag.amber{background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.2);color:#fde68a}
+.skill-tag.pink{background:rgba(236,72,153,0.1);border-color:rgba(236,72,153,0.2);color:#f9a8d4}
+
+/* TIMELINE */
+.timeline{position:relative;margin-top:3rem;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--blue),var(--purple),transparent)}
+.timeline-item{position:relative;margin-bottom:3rem;padding-left:2.5rem}
+.timeline-dot{position:absolute;left:-2.5rem;top:6px;width:14px;height:14px;border-radius:50%;background:var(--gradient);border:2px solid var(--bg);box-shadow:0 0 0 4px rgba(59,130,246,0.2)}
+.timeline-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;transition:all var(--transition)}
+.timeline-card:hover{border-color:var(--border-active);transform:translateX(6px);box-shadow:var(--shadow)}
+.timeline-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;margin-bottom:0.5rem}
+.timeline-role{font-size:1rem;font-weight:600;color:var(--text)}
+.timeline-period{font-size:0.78rem;color:var(--blue2);background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);padding:3px 10px;border-radius:100px;white-space:nowrap}
+.timeline-company{font-size:0.85rem;color:var(--text2);margin-bottom:1rem}
+.timeline-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+.timeline-list li{font-size:0.85rem;color:var(--text3);padding-left:1rem;position:relative;line-height:1.6}
+.timeline-list li::before{content:'';position:absolute;left:0;top:0.55em;width:4px;height:4px;border-radius:50%;background:var(--blue2)}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:3rem}
+.project-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all var(--transition);cursor:pointer;position:relative}
+.project-card:hover{border-color:var(--border-active);transform:translateY(-6px);box-shadow:0 20px 60px rgba(59,130,246,0.1)}
+.project-visual{height:180px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.project-visual-1{background:linear-gradient(135deg,#1e3a5f,#1e1a5f)}
+.project-visual-2{background:linear-gradient(135deg,#2d1b4e,#4c1d95)}
+.project-visual-3{background:linear-gradient(135deg,#064e3b,#065f46)}
+.project-visual-4{background:linear-gradient(135deg,#4a1942,#7c3aed)}
+.project-visual-5{background:linear-gradient(135deg,#1e3a5f,#0e7490)}
+.project-icon-big{font-size:3rem;opacity:0.9}
+.project-app-preview{display:flex;gap:8px;align-items:center;justify-content:center;height:100%}
+.mini-phone{width:50px;height:86px;border-radius:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);overflow:hidden}
+.mini-phone-bar{height:16px;display:flex;align-items:center;padding:0 5px;font-size:0.4rem;color:rgba(255,255,255,0.8);font-weight:600}
+.mini-phone-content{padding:4px;display:flex;flex-direction:column;gap:3px}
+.mini-block{height:8px;border-radius:2px;background:rgba(255,255,255,0.15)}
+.mini-block.highlight{background:rgba(255,255,255,0.35)}
+.project-body{padding:1.5rem}
+.project-name{font-size:1rem;font-weight:600;margin-bottom:0.4rem;color:var(--text)}
+.project-subtitle{font-size:0.8rem;color:var(--text3);margin-bottom:1rem;line-height:1.5}
+.project-features{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
+.feature-pill{font-size:0.72rem;padding:3px 9px;border-radius:100px;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--text3)}
+.project-tech{display:flex;flex-wrap:wrap;gap:5px}
+.tech-badge{font-size:0.7rem;padding:3px 8px;border-radius:5px;background:rgba(59,130,246,0.1);color:var(--blue2);border:1px solid rgba(59,130,246,0.2)}
+
+/* EDUCATION */
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:3rem}
+.edu-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;transition:all var(--transition);position:relative;overflow:hidden}
+.edu-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gradient)}
+.edu-card:hover{border-color:var(--border-active);transform:translateY(-4px)}
+.edu-degree{font-size:1rem;font-weight:600;margin-bottom:0.3rem;color:var(--text)}
+.edu-field{font-size:0.85rem;color:var(--blue2);margin-bottom:0.6rem}
+.edu-school{font-size:0.82rem;color:var(--text2);line-height:1.5}
+
+/* ACHIEVEMENTS */
+.achievements-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:3rem}
+.achievement-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;text-align:center;transition:all var(--transition);position:relative;overflow:hidden}
+.achievement-card::before{content:'';position:absolute;inset:0;background:var(--gradient);opacity:0;transition:opacity 0.4s}
+.achievement-card:hover{transform:translateY(-4px);border-color:var(--border-active)}
+.achievement-card:hover::before{opacity:0.04}
+.achievement-number{font-family:var(--serif);font-size:2.5rem;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1;margin-bottom:6px}
+.achievement-label{font-size:0.8rem;color:var(--text3);line-height:1.4}
+.achievement-icon{font-size:1.5rem;margin-bottom:0.75rem;display:block}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:3rem;align-items:start}
+.contact-info{display:flex;flex-direction:column;gap:20px}
+.contact-item{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.25rem;transition:all var(--transition)}
+.contact-item:hover{border-color:var(--border-active);transform:translateX(6px)}
+.contact-icon{width:42px;height:42px;border-radius:10px;background:var(--gradient);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.contact-label{font-size:0.75rem;color:var(--text3);margin-bottom:2px}
+.contact-value{font-size:0.9rem;color:var(--text);font-weight:400}
+.contact-value a{color:var(--blue2);transition:color var(--transition)}
+.contact-value a:hover{color:var(--cyan)}
+.contact-form{display:flex;flex-direction:column;gap:14px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-label{font-size:0.8rem;color:var(--text2);font-weight:400}
+.form-input{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:12px 16px;border-radius:10px;font-size:0.9rem;font-family:var(--font);transition:all var(--transition);outline:none}
+.form-input:focus{border-color:var(--border-active);background:var(--surface-hover)}
+.form-input::placeholder{color:var(--text3)}
+textarea.form-input{resize:vertical;min-height:120px;line-height:1.6}
+.form-submit{background:var(--gradient);color:#fff;border:none;padding:14px 28px;border-radius:10px;font-size:0.92rem;font-family:var(--font);cursor:pointer;font-weight:500;transition:opacity var(--transition),transform var(--transition);width:100%;letter-spacing:0.02em}
+.form-submit:hover{opacity:0.85;transform:translateY(-2px)}
+
+/* FOOTER */
+footer{padding:3rem 0;border-top:1px solid var(--border);text-align:center}
+.footer-text{color:var(--text3);font-size:0.85rem;line-height:1.7}
+.footer-heart{color:#f43f5e}
+.footer-social{display:flex;gap:12px;justify-content:center;margin-top:1.25rem}
+
+/* DIVIDER */
+.section-divider{width:60px;height:2px;background:var(--gradient);border-radius:1px;margin:1.5rem 0}
+
+/* LIGHT MODE OVERRIDES */
+.light-mode .phone-mockup,.light-mode .about-avatar,.light-mode .app-content{background:var(--bg3)}
+.light-mode .mini-phone{background:rgba(0,0,80,0.06);border-color:rgba(0,0,80,0.1)}
+.light-mode .mini-block{background:rgba(0,0,80,0.1)}
+.light-mode .mini-block.highlight{background:rgba(59,130,246,0.4)}
+.light-mode .hero-glow{opacity:0.06}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .about-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .hero-phones{display:none}
+  .nav-links{display:none}
+  .hamburger{display:block}
+}
+@media(max-width:600px){
+  .about-stats{grid-template-columns:repeat(2,1fr)}
+  .hero-btns{flex-direction:column;align-items:center}
+  .section-title{font-size:2rem}
+  section{padding:70px 0}
+  .floating-card{display:none}
+}
+</style>
+</head>
+<body>
+
+<div id="scroll-progress"></div>
+
+<div id="loader">
+  <div class="loader-logo">HL</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<nav id="navbar">
+  <div class="nav-logo">Hemant Likhar</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn" title="Toggle theme">🌙</button>
+    <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hire Me</button>
+    <button class="hamburger" id="hamburger">☰</button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#skills" onclick="closeMobile()">Skills</a>
+  <a href="#experience" onclick="closeMobile()">Experience</a>
+  <a href="#projects" onclick="closeMobile()">Projects</a>
+  <a href="#education" onclick="closeMobile()">Education</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="grid-bg"></div>
+    <div class="hero-glow glow-1"></div>
+    <div class="hero-glow glow-2"></div>
+    <div class="hero-glow glow-3"></div>
+  </div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge reveal">
+        <span class="badge-dot"></span>
+        Available for Senior Roles & Consulting
+      </div>
+      <h1 class="hero-name reveal">
+        Hemant<br><span>Likhar</span>
+      </h1>
+      <p class="hero-title reveal">Senior iOS Developer &amp; Mobile Tech Lead</p>
+      <p class="hero-desc reveal">15+ years of experience building scalable, enterprise-grade iOS applications for logistics, freight management, and business platforms.</p>
+      <p class="hero-desc2 reveal">Experienced in Swift, SwiftUI, UIKit, Objective-C, architecture design, and team leadership with recent hands-on experience in React Native development.</p>
+      <div class="hero-btns reveal">
+        <a href="mailto:hemlikhar@gmail.com" class="btn-primary">📩 Download Resume</a>
+        <button class="btn-outline" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">🚀 View Projects</button>
+        <button class="btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">💬 Contact Me</button>
+      </div>
+      <div class="hero-social reveal">
+        <a href="https://www.linkedin.com/in/hemant-likhar-87257250/" target="_blank" class="social-link" title="LinkedIn">in</a>
+        <a href="https://github.com/hemantlikhar/" target="_blank" class="social-link" title="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="mailto:hemlikhar@gmail.com" class="social-link" title="Email">✉</a>
+      </div>
+    </div>
+
+    <div class="hero-phones reveal">
+      <div class="floating-card fc1">
+        <div class="fc-label">Experience</div>
+        <div class="fc-value">15+ Years</div>
+      </div>
+      <div class="phone-mockup" style="transform:translateY(20px) rotate(-6deg)">
+        <div class="phone-screen">
+          <div class="phone-app">
+            <div class="app-bar app-bar-blue">AFM DRIVER</div>
+            <div class="app-content">
+              <div class="app-card-mini"><strong>Active Shipment</strong>In Transit – Mumbai</div>
+              <div class="app-card-mini"><strong>Next Pickup</strong>14:30 – Sector 45</div>
+              <div class="app-map">
+                <div class="map-dot" style="left:40%;top:40%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-mockup center">
+        <div class="phone-screen">
+          <div class="phone-app">
+            <div class="app-bar app-bar-purple">AVT BHARAT</div>
+            <div class="app-content">
+              <div class="app-card-mini"><strong>Fleet Status</strong>24 Active Vehicles</div>
+              <div class="app-card-mini"><strong>Live Tracking</strong>Real-time GPS</div>
+              <div class="app-map">
+                <div class="map-dot" style="left:30%;top:50%"></div>
+                <div class="map-dot" style="left:60%;top:30%;animation-delay:0.5s"></div>
+                <div class="map-dot" style="left:50%;top:65%;animation-delay:1s"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-mockup" style="transform:translateY(20px) rotate(6deg)">
+        <div class="phone-screen">
+          <div class="phone-app">
+            <div class="app-bar app-bar-cyan">AFM DISPATCH</div>
+            <div class="app-content">
+              <div class="app-card-mini"><strong>Dispatches Today</strong>12 Completed</div>
+              <div class="app-card-mini"><strong>Pending</strong>3 Orders</div>
+              <div class="app-map">
+                <div class="map-dot" style="left:50%;top:45%;animation-delay:0.3s"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="floating-card fc2">
+        <div class="fc-label">Apps Built</div>
+        <div class="fc-value">5+ Enterprise</div>
+      </div>
+      <div class="floating-card fc3">
+        <div class="fc-label">Tech Stack</div>
+        <div class="fc-value">Swift · SwiftUI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Who I Am</div>
+      <h2 class="section-title">Crafting <span>Exceptional</span><br>Mobile Experiences</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="about-grid">
+      <div class="reveal-left">
+        <div class="about-avatar">
+          <div class="avatar-inner">HL</div>
+          <div class="avatar-ring"></div>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="about-text">
+          <p>With over <strong style="color:var(--text)">15 years of iOS development experience</strong>, I specialize in building enterprise-grade mobile applications that power logistics, fleet management, and freight operations at scale.</p>
+          <p>As a <strong style="color:var(--text)">Tech Lead at AVAAL Technology</strong>, I have led full product development cycles — from architecture design to App Store deployment — for platforms serving thousands of users.</p>
+          <p>I bring deep expertise in <strong style="color:var(--text)">Swift, SwiftUI, UIKit, and Objective-C</strong>, and have worked across the full iOS stack including real-time tracking, offline sync, and complex business workflows.</p>
+          <p>Recently, I have expanded into <strong style="color:var(--text)">React Native</strong> and modern cross-platform development, positioning myself for full-stack mobile architecture roles.</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-card">
+            <div class="stat-number">15+</div>
+            <div class="stat-label">Years iOS Experience</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">5+</div>
+            <div class="stat-label">Enterprise Products</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">8+</div>
+            <div class="stat-label">Years as Tech Lead</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">∞</div>
+            <div class="stat-label">Production Deployments</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="background:var(--bg2)">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Technical Arsenal</div>
+      <h2 class="section-title">Skills &amp; <span>Expertise</span></h2>
+      <div class="section-divider"></div>
+      <p class="section-sub">A comprehensive toolkit built over 15 years of enterprise iOS development and modern mobile architecture.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-category reveal">
+        <div class="skill-cat-icon">📱</div>
+        <div class="skill-cat-title">iOS Development</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Swift</span><span class="skill-tag">Objective-C</span><span class="skill-tag">SwiftUI</span><span class="skill-tag">UIKit</span><span class="skill-tag">Combine</span><span class="skill-tag">CoreData</span><span class="skill-tag">AVFoundation</span><span class="skill-tag">StoreKit</span><span class="skill-tag">Push Notifications</span><span class="skill-tag">Background Tasks</span><span class="skill-tag">App Lifecycle</span>
+        </div>
+      </div>
+      <div class="skill-category reveal">
+        <div class="skill-cat-icon">🏗️</div>
+        <div class="skill-cat-title">Architecture &amp; Patterns</div>
+        <div class="skill-tags">
+          <span class="skill-tag purple">MVVM</span><span class="skill-tag purple">VIPER</span><span class="skill-tag purple">Clean Architecture</span><span class="skill-tag purple">Modular Architecture</span><span class="skill-tag purple">SOLID Principles</span><span class="skill-tag purple">Dependency Injection</span>
+        </div>
+      </div>
+      <div class="skill-category reveal">
+        <div class="skill-cat-icon">🌐</div>
+        <div class="skill-cat-title">Mobile &amp; Integration</div>
+        <div class="skill-tags">
+          <span class="skill-tag cyan">REST APIs</span><span class="skill-tag cyan">JSON Parsing</span><span class="skill-tag cyan">Firebase</span><span class="skill-tag cyan">Real-time Tracking</span><span class="skill-tag cyan">Maps &amp; Location</span><span class="skill-tag cyan">WebSockets</span><span class="skill-tag cyan">Offline Sync</span>
+        </div>
+      </div>
+      <div class="skill-category reveal">
+        <div class="skill-cat-icon">🔧</div>
+        <div class="skill-cat-title">Tools &amp; DevOps</div>
+        <div class="skill-tags">
+          <span class="skill-tag green">Xcode</span><span class="skill-tag green">Git</span><span class="skill-tag green">Fastlane</span><span class="skill-tag green">CI/CD</span><span class="skill-tag green">TestFlight</span><span class="skill-tag green">Jira</span><span class="skill-tag green">Postman</span><span class="skill-tag green">Xcode Cloud</span>
+        </div>
+      </div>
+      <div class="skill-category reveal">
+        <div class="skill-cat-icon">⚛️</div>
+        <div class="skill-cat-title">Cross-Platform</div>
+        <div class="skill-tags">
+          <span class="skill-tag amber">React Native</span><span class="skill-tag amber">JavaScript</span><span class="skill-tag amber">TypeScript</span>
+        </div>
+      </div>
+      <div class="skill-category reveal">
+        <div class="skill-cat-icon">👥</div>
+        <div class="skill-cat-title">Leadership &amp; Process</div>
+        <div class="skill-tags">
+          <span class="skill-tag pink">Team Leadership</span><span class="skill-tag pink">Agile</span><span class="skill-tag pink">Sprint Planning</span><span class="skill-tag pink">Mentoring</span><span class="skill-tag pink">Product Collaboration</span><span class="skill-tag pink">Tech Architecture</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Career Journey</div>
+      <h2 class="section-title">Professional <span>Experience</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div class="timeline-role">Senior iOS Developer – Product Development (Tech Lead)</div>
+            <div class="timeline-period">Jun 2016 – Present</div>
+          </div>
+          <div class="timeline-company">🏢 AVAAL Technology Pvt Ltd · Gurugram, India</div>
+          <ul class="timeline-list">
+            <li>Led end-to-end enterprise iOS application development for freight and logistics platforms</li>
+            <li>Designed scalable modular mobile architectures adopted across the product suite</li>
+            <li>Mentored and guided a team of iOS developers, conducting code reviews and sprint planning</li>
+            <li>Collaborated directly with product, QA, and business teams on feature delivery</li>
+            <li>Developed logistics, fleet management, and electronic manifest (e-Manifest) applications</li>
+            <li>Managed full release cycles including TestFlight, App Store submission, and production deployments</li>
+            <li>Recently introduced React Native capabilities within the mobile engineering team</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div class="timeline-role">Senior iOS Developer – Product Development</div>
+            <div class="timeline-period">Nov 2014 – Apr 2016</div>
+          </div>
+          <div class="timeline-company">🏢 Aequor Information Technology Pvt Ltd · Gurugram, India</div>
+          <ul class="timeline-list">
+            <li>Developed enterprise-grade mobile applications across multiple product lines</li>
+            <li>Improved application performance through profiling and architecture optimization</li>
+            <li>Integrated scalable REST APIs and third-party SDKs across iOS products</li>
+            <li>Built and maintained reusable mobile component libraries for faster feature delivery</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div class="timeline-role">iOS Developer</div>
+            <div class="timeline-period">Dec 2010 – Nov 2014</div>
+          </div>
+          <div class="timeline-company">🏢 Artificial Machines · Pune, India</div>
+          <ul class="timeline-list">
+            <li>Built native iOS applications from scratch, covering the full development lifecycle</li>
+            <li>Implemented modern UI/UX patterns with UIKit and Storyboard-based interfaces</li>
+            <li>Integrated backend APIs and maintained production application stability</li>
+            <li>Collaborated with designers and backend engineers on product features</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="background:var(--bg2)">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Featured Work</div>
+      <h2 class="section-title">Enterprise <span>Projects</span></h2>
+      <div class="section-divider"></div>
+      <p class="section-sub">Production-scale iOS applications serving logistics, freight, and fleet management operations across North America and India.</p>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-visual project-visual-1">
+          <div class="project-app-preview">
+            <div class="mini-phone">
+              <div class="mini-phone-bar" style="background:#1e40af;color:#fff">DRIVER</div>
+              <div class="mini-phone-content">
+                <div class="mini-block highlight"></div>
+                <div class="mini-block"></div>
+                <div class="mini-block highlight" style="width:70%"></div>
+                <div class="mini-block"></div>
+                <div class="mini-block" style="width:80%"></div>
+              </div>
+            </div>
+            <div class="mini-phone" style="transform:scale(1.1)">
+              <div class="mini-phone-bar" style="background:#2563eb;color:#fff">MAP</div>
+              <div class="mini-phone-content">
+                <div style="height:40px;background:rgba(59,130,246,0.15);border-radius:3px;position:relative">
+                  <div style="position:absolute;width:6px;height:6px;background:#22d3ee;border-radius:50%;top:30%;left:50%"></div>
+                </div>
+                <div class="mini-block" style="width:60%"></div>
+                <div class="mini-block highlight" style="width:80%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">AFM Driver</div>
+          <div class="project-subtitle">Avaal Freight Management Driver Application — Complete driver workflow and shipment lifecycle management</div>
+          <div class="project-features">
+            <span class="feature-pill">Driver Workflow</span><span class="feature-pill">Shipment Tracking</span><span class="feature-pill">Real-time Status</span><span class="feature-pill">Logistics Ops</span>
+          </div>
+          <div class="project-tech">
+            <span class="tech-badge">Swift</span><span class="tech-badge">UIKit</span><span class="tech-badge">Maps</span><span class="tech-badge">REST API</span><span class="tech-badge">CoreData</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-visual project-visual-2">
+          <div class="project-app-preview">
+            <div class="mini-phone">
+              <div class="mini-phone-bar" style="background:#6b21a8;color:#fff">DISPATCH</div>
+              <div class="mini-phone-content">
+                <div class="mini-block highlight"></div>
+                <div class="mini-block" style="width:75%"></div>
+                <div class="mini-block highlight"></div>
+                <div class="mini-block" style="width:55%"></div>
+              </div>
+            </div>
+            <div class="mini-phone" style="transform:scale(1.1)">
+              <div class="mini-phone-bar" style="background:#7c3aed;color:#fff">FLEET</div>
+              <div class="mini-phone-content">
+                <div class="mini-block highlight"></div>
+                <div class="mini-block"></div>
+                <div class="mini-block" style="width:65%"></div>
+                <div class="mini-block highlight" style="width:80%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">AFM Dispatch</div>
+          <div class="project-subtitle">Freight Management Dispatcher Application — Operations dashboard for fleet coordination and dispatch management</div>
+          <div class="project-features">
+            <span class="feature-pill">Dispatch Mgmt</span><span class="feature-pill">Fleet Coord</span><span class="feature-pill">Real-time Comms</span><span class="feature-pill">Dashboard</span>
+          </div>
+          <div class="project-tech">
+            <span class="tech-badge">Swift</span><span class="tech-badge">SwiftUI</span><span class="tech-badge">WebSockets</span><span class="tech-badge">Firebase</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-visual project-visual-3">
+          <div class="project-app-preview">
+            <div class="mini-phone">
+              <div class="mini-phone-bar" style="background:#065f46;color:#fff">TRACKING</div>
+              <div class="mini-phone-content">
+                <div style="height:44px;background:rgba(16,185,129,0.1);border-radius:3px;position:relative">
+                  <div style="position:absolute;width:5px;height:5px;background:#10b981;border-radius:50%;top:25%;left:35%"></div>
+                  <div style="position:absolute;width:5px;height:5px;background:#10b981;border-radius:50%;top:55%;left:65%"></div>
+                  <div style="position:absolute;width:5px;height:5px;background:#10b981;border-radius:50%;top:35%;left:55%"></div>
+                </div>
+                <div class="mini-block highlight" style="background:rgba(16,185,129,0.3);width:70%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">AVT Bharat</div>
+          <div class="project-subtitle">AVAAL Vehicle Tracking — Real-time GPS fleet monitoring with live analytics and location intelligence</div>
+          <div class="project-features">
+            <span class="feature-pill">GPS Tracking</span><span class="feature-pill">Live Monitoring</span><span class="feature-pill">Fleet Analytics</span><span class="feature-pill">Location Updates</span>
+          </div>
+          <div class="project-tech">
+            <span class="tech-badge">Swift</span><span class="tech-badge">MapKit</span><span class="tech-badge">CoreLocation</span><span class="tech-badge">WebSockets</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-visual project-visual-4">
+          <div class="project-app-preview">
+            <div class="mini-phone" style="transform:scale(1.1)">
+              <div class="mini-phone-bar" style="background:#6d28d9;color:#fff">e-MANIFEST</div>
+              <div class="mini-phone-content">
+                <div class="mini-block highlight" style="background:rgba(167,139,250,0.3)"></div>
+                <div class="mini-block" style="width:80%"></div>
+                <div class="mini-block highlight" style="background:rgba(167,139,250,0.3);width:60%"></div>
+                <div class="mini-block"></div>
+                <div class="mini-block" style="width:75%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">AEM Driver</div>
+          <div class="project-subtitle">AVAAL e-Manifest — Digital electronic manifest management with driver verification and compliance workflows</div>
+          <div class="project-features">
+            <span class="feature-pill">e-Manifest</span><span class="feature-pill">Driver Verify</span><span class="feature-pill">Compliance</span><span class="feature-pill">Digital Docs</span>
+          </div>
+          <div class="project-tech">
+            <span class="tech-badge">Swift</span><span class="tech-badge">UIKit</span><span class="tech-badge">CoreData</span><span class="tech-badge">PDFKit</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-visual project-visual-5">
+          <div class="project-app-preview">
+            <div class="mini-phone">
+              <div class="mini-phone-bar" style="background:#0e7490;color:#fff">CUSTOMER</div>
+              <div class="mini-phone-content">
+                <div class="mini-block highlight" style="background:rgba(34,211,238,0.3)"></div>
+                <div class="mini-block" style="width:70%"></div>
+                <div class="mini-block highlight" style="background:rgba(34,211,238,0.2);width:85%"></div>
+                <div class="mini-block" style="width:55%"></div>
+              </div>
+            </div>
+            <div class="mini-phone" style="transform:scale(1.05)">
+              <div class="mini-phone-bar" style="background:#155e75;color:#fff">ORDERS</div>
+              <div class="mini-phone-content">
+                <div class="mini-block highlight" style="background:rgba(34,211,238,0.25)"></div>
+                <div class="mini-block"></div>
+                <div class="mini-block" style="width:65%"></div>
+                <div class="mini-block highlight" style="background:rgba(34,211,238,0.25)"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">AFM Customer</div>
+          <div class="project-subtitle">Avaal Freight Management Customer App — End-to-end shipment visibility and order management for customers</div>
+          <div class="project-features">
+            <span class="feature-pill">Shipment Track</span><span class="feature-pill">Order Mgmt</span><span class="feature-pill">Notifications</span><span class="feature-pill">Logistics View</span>
+          </div>
+          <div class="project-tech">
+            <span class="tech-badge">Swift</span><span class="tech-badge">SwiftUI</span><span class="tech-badge">Push Notif</span><span class="tech-badge">REST API</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem" class="reveal">
+      <a href="https://apps.apple.com/us/iphone/search?term=avaal" target="_blank" class="btn-outline">
+        🍎 View on App Store Connect
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Academic Background</div>
+      <h2 class="section-title">Education &amp; <span>Training</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <div class="edu-degree">B.E. in Computer Science</div>
+        <div class="edu-field">Computer Science Engineering</div>
+        <div class="edu-school">Maharana Pratap College of Technology, Gwalior<br>Rajiv Gandhi Proudyogiki Vishwavidyalay</div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-degree">PG Diploma in Advanced Computing</div>
+        <div class="edu-field">Advanced Software Engineering</div>
+        <div class="edu-school">Pune, India<br><br><span style="font-size:0.8rem;color:var(--text3)">Specialized in software engineering, algorithms, and application development.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements" style="background:var(--bg2)">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Impact &amp; Milestones</div>
+      <h2 class="section-title">By the <span>Numbers</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="achievements-grid">
+      <div class="achievement-card reveal">
+        <span class="achievement-icon">🏆</span>
+        <span class="achievement-number">15+</span>
+        <div class="achievement-label">Years of iOS Development Industry Experience</div>
+      </div>
+      <div class="achievement-card reveal">
+        <span class="achievement-icon">📦</span>
+        <span class="achievement-number">5+</span>
+        <div class="achievement-label">Enterprise Applications Delivered to Production</div>
+      </div>
+      <div class="achievement-card reveal">
+        <span class="achievement-icon">👨‍💼</span>
+        <span class="achievement-number">8+</span>
+        <div class="achievement-label">Years Leading Mobile Engineering Teams</div>
+      </div>
+      <div class="achievement-card reveal">
+        <span class="achievement-icon">🚛</span>
+        <span class="achievement-number">1M+</span>
+        <div class="achievement-label">Logistics Operations Powered by Mobile Apps</div>
+      </div>
+      <div class="achievement-card reveal">
+        <span class="achievement-icon">⚙️</span>
+        <span class="achievement-number">3</span>
+        <div class="achievement-label">Companies &amp; Domains of Enterprise Expertise</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Get In Touch</div>
+      <h2 class="section-title">Let's <span>Connect</span></h2>
+      <div class="section-divider"></div>
+      <p class="section-sub">Open to senior iOS engineering roles, technical leadership opportunities, consulting engagements, and startup advisory.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal-left">
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-value"><a href="mailto:hemlikhar@gmail.com">hemlikhar@gmail.com</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon" style="font-size:0.85rem;font-weight:700">in</div>
+            <div>
+              <div class="contact-label">LinkedIn</div>
+              <div class="contact-value"><a href="https://www.linkedin.com/in/hemant-likhar-87257250/" target="_blank">hemant-likhar-87257250</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </div>
+            <div>
+              <div class="contact-label">GitHub</div>
+              <div class="contact-value"><a href="https://github.com/hemantlikhar/" target="_blank">github.com/hemantlikhar</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-label">Location</div>
+              <div class="contact-value">India · Open to Remote &amp; Relocation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="contact-form">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input type="text" class="form-input" placeholder="John Smith">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-input" placeholder="john@company.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Subject</label>
+            <input type="text" class="form-input" placeholder="Senior iOS Role / Consulting Opportunity">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea class="form-input" placeholder="Tell me about the opportunity or project you have in mind..."></textarea>
+          </div>
+          <button class="form-submit" onclick="handleFormSubmit(this)">Send Message →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-text">
+      <strong style="font-size:1rem;color:var(--text)">Hemant Likhar</strong><br>
+      Senior iOS Developer &amp; Mobile Tech Lead<br>
+      Designed &amp; Developed with <span class="footer-heart">♥</span> — Passionate about building scalable mobile experiences.
+    </div>
+    <div class="footer-social">
+      <a href="https://www.linkedin.com/in/hemant-likhar-87257250/" target="_blank" class="social-link" title="LinkedIn">in</a>
+      <a href="https://github.com/hemantlikhar/" target="_blank" class="social-link" title="GitHub">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      </a>
+      <a href="mailto:hemlikhar@gmail.com" class="social-link" title="Email">✉</a>
+    </div>
+    <div style="margin-top:1.5rem;font-size:0.75rem;color:var(--text3)">© 2025 Hemant Likhar. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+// LOADER
+window.addEventListener('load',()=>{
+  setTimeout(()=>{document.getElementById('loader').classList.add('hidden')},1500);
+});
+
+// SCROLL PROGRESS
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement;
+  const pct=(s.scrollTop/(s.scrollHeight-s.clientHeight))*100;
+  document.getElementById('scroll-progress').style.width=pct+'%';
+});
+
+// THEME TOGGLE
+const themeBtn=document.getElementById('themeBtn');
+let dark=true;
+themeBtn.addEventListener('click',()=>{
+  dark=!dark;
+  document.body.classList.toggle('light-mode',!dark);
+  themeBtn.textContent=dark?'🌙':'☀️';
+});
+
+// MOBILE MENU
+document.getElementById('hamburger').addEventListener('click',()=>{
+  document.getElementById('mobileMenu').classList.toggle('open');
+});
+function closeMobile(){document.getElementById('mobileMenu').classList.remove('open')}
+
+// REVEAL ON SCROLL
+const revealEls=document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}});
+},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+revealEls.forEach((el,i)=>{
+  el.style.transitionDelay=(i%3)*0.08+'s';
+  observer.observe(el);
+});
+
+// COUNTER ANIMATION
+function animateCounter(el,target,suffix=''){
+  let start=0;
+  const duration=2000;
+  const step=timestamp=>{
+    if(!start) start=timestamp;
+    const prog=Math.min((timestamp-start)/duration,1);
+    const ease=1-Math.pow(1-prog,3);
+    const val=Math.floor(ease*target);
+    el.textContent=(isNaN(target)?'∞':val+suffix);
+    if(prog<1)requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+const counterObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const nums=e.target.querySelectorAll('.stat-number,.achievement-number');
+      nums.forEach(n=>{
+        const t=n.textContent;
+        if(t.includes('15'))animateCounter(n,15,'+');
+        else if(t.includes('5'))animateCounter(n,5,'+');
+        else if(t.includes('8'))animateCounter(n,8,'+');
+        else if(t.includes('1M'))n.textContent='1M+';
+        else if(t.includes('3'))animateCounter(n,3);
+        else if(t.includes('∞'))n.textContent='∞';
+        else if(t.includes('2.5'))n.textContent='2.5rem';
+      });
+      counterObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.3});
+document.querySelectorAll('.about-stats,.achievements-grid').forEach(el=>counterObs.observe(el));
+
+// FORM SUBMIT
+function handleFormSubmit(btn){
+  btn.textContent='Sending...';
+  btn.style.opacity='0.7';
+  setTimeout(()=>{
+    btn.textContent='✓ Message Sent!';
+    btn.style.background='linear-gradient(135deg,#22c55e,#16a34a)';
+    setTimeout(()=>{
+      btn.textContent='Send Message →';
+      btn.style.background='';
+      btn.style.opacity='';
+    },3000);
+  },1500);
+}
+
+// NAV active state
+window.addEventListener('scroll',()=>{
+  const sections=document.querySelectorAll('section[id]');
+  const scrollY=window.scrollY;
+  sections.forEach(s=>{
+    const top=s.offsetTop-80;
+    const bot=top+s.offsetHeight;
+    const link=document.querySelector(`.nav-links a[href="#${s.id}"]`);
+    if(link){
+      if(scrollY>=top&&scrollY<bot)link.style.color='var(--blue2)';
+      else link.style.color='';
+    }
+  });
+});
+</script>
+</body>
+</html>
